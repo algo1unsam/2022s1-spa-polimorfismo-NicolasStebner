@@ -1,0 +1,47 @@
+import personas.*
+import spa.*
+
+test "Atendemos a Olivia" {
+	//concentracion = 6 ; cuando recibe masajes aumenta 3 y cuando discute disminuye 1
+	spa.atender(olivia)
+	assert.equals(9,olivia.gradoDeConcentracion())
+	olivia.discute()
+	olivia.discute()
+	assert.equals(7,olivia.gradoDeConcentracion())
+	
+}
+test "Atendemos a Bruno" {
+	//feliz = T ; sed = F; peso = 55000
+	bruno.mediodiaEnCasa()//comeFideos, tomaAgua,veElNoticiero
+	assert.equals(55250,bruno.peso())
+	assert.notThat(bruno.feliz())
+	spa.atender(bruno)
+	assert.that(bruno.feliz())
+	assert.equals(54750,bruno.peso())
+	assert.that(bruno.sed())
+	assert.notThat(bruno.estaPerfecto())
+}
+test "Atendemos a Ramiro" {
+	//contracturado = 5(default) ; piel Grasosa = true
+	ramiro.nivelDeContracturado(0)
+	ramiro.diaDeTrabajo()
+	assert.that(ramiro.pielGrasosa())
+	assert.equals(2,ramiro.nivelDeContracturado())
+	
+	spa.atender(ramiro)
+	assert.notThat(ramiro.pielGrasosa())
+	assert.equals(0,ramiro.nivelDeContracturado())
+	
+	
+}
+test "Atendemos a Ramiro(probamos que vaya 2 veces seguidas)" {
+	//contracturado = 5(default) ; piel Grasosa = true
+	ramiro.nivelDeContracturado(8)
+	spa.atender(ramiro)
+	assert.equals(6,ramiro.nivelDeContracturado())
+	spa.atender(ramiro)
+	assert.equals(2,ramiro.nivelDeContracturado())
+	
+	
+}
+
